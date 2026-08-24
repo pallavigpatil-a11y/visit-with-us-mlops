@@ -16,7 +16,7 @@ jobs:
         with: {python-version: '3.11'}
       - run: pip install -r requirements.txt
       - run: python src/validate_data.py
-      - run: python src/preprocess.py
+      - run: python src/prepare_data.py
       - uses: actions/upload-artifact@v4
         with: {name: ml-data, path: artifacts/}
   train-evaluate:
@@ -29,7 +29,7 @@ jobs:
       - run: pip install -r requirements.txt
       - uses: actions/download-artifact@v4
         with: {name: ml-data, path: artifacts/}
-      - run: python src/train.py
+      - run: python src/train_model.py
       - uses: actions/upload-artifact@v4
         with:
           name: trained-model
